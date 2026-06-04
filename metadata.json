@@ -1,0 +1,6 @@
+{
+  "name": "Korea AI Contents Lab",
+  "description": "이혜인 강사와 함께하는 AI 실무 교육의 새로운 기준",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
