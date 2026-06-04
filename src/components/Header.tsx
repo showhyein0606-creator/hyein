@@ -28,7 +28,7 @@ export default function Header() {
       >
         <div className="max-w-[1440px] mx-auto flex justify-between items-center px-6 md:px-12">
           {/* Logo Section */}
-          <a href="#" className="flex items-center gap-3 group focus:outline-none">
+          <a href="https://hanconyeon.com/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group focus:outline-none">
             <div className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center p-1 border border-white/10 group-hover:border-white/20 transition-all">
               <img 
                 src={logoUrl} 

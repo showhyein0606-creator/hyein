@@ -54,9 +54,9 @@ export const channels: Channel[] = [
   {
     id: 'youtube',
     name: 'YouTube',
-    handle: '한콘연 TV',
+    handle: '@smliegirl1004',
     iconName: 'play_circle',
-    url: 'https://www.youtube.com',
+    url: 'https://www.youtube.com/@smliegirl1004',
     backgroundColor: 'rgba(239, 68, 68, 0.15)', // Custom transparent red
     textColor: '#EF4444',
   },
@@ -65,18 +65,18 @@ export const channels: Channel[] = [
     name: 'Naver Blog',
     handle: '이혜인의 실전 일지',
     iconName: 'description',
-    url: 'https://blog.naver.com',
+    url: 'https://blog.naver.com/980207',
     backgroundColor: 'rgba(34, 197, 94, 0.15)', // Custom transparent green
     textColor: '#22C55E',
   },
   {
-    id: 'official-web',
-    name: 'Official Web',
-    handle: '교육 문의 및 신청',
+    id: 'kakao-talk',
+    name: 'Open KakaoTalk',
+    handle: '1:1 오픈채팅 문의',
     iconName: 'language',
-    url: '#contact',
-    backgroundColor: 'rgba(59, 130, 246, 0.15)', // Custom transparent blue
-    textColor: '#3B82F6',
+    url: 'https://open.kakao.com/o/sknLE5xi',
+    backgroundColor: 'rgba(251, 191, 36, 0.15)', // Custom transparent yellow/gold
+    textColor: '#F59E0B',
   },
   {
     id: 'instagram',

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://friendly-dusk-7bd9a1.netlify.app/sitemap.xml

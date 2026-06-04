@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, CheckCircle2, RefreshCw } from 'lucide-react';
+import { Send, CheckCircle2, RefreshCw, AlertTriangle } from 'lucide-react';
 import { ContactForm } from '../types';
 
 export default function Contact() {
@@ -13,20 +13,53 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.fullName || !formData.email || !formData.message) {
       return;
     }
 
     setIsSubmitting(true);
+    setErrorMsg(null);
     
-    // Simulate real API dispatch latency
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          service_id: 'service_g0lubic',
+          template_id: 'template_jky7zuf',
+          user_id: 'y-tKM1GlkCW0qk-cS',
+          template_params: {
+            fullName: formData.fullName,
+            email: formData.email,
+            inquiryType: formData.inquiryType,
+            message: formData.message,
+            from_name: formData.fullName,
+            reply_to: formData.email,
+            inquiry_type: formData.inquiryType,
+            to_email: 's071215@gmail.com',
+          }
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+      } else {
+        const errorText = await response.text();
+        console.error('EmailJS error:', errorText);
+        setErrorMsg('이메일 발송에 실패했습니다. 다시 시도해 주시거나 s071215@gmail.com으로 직접 문의해 주세요.');
+      }
+    } catch (err: any) {
+      console.error('Network error while using EmailJS:', err);
+      setErrorMsg('네트워크 오류가 발생했습니다. 연결을 확인하고 다시 시도해 주세요.');
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 1200);
+    }
   };
 
   const handleReset = () => {
@@ -36,6 +69,7 @@ export default function Contact() {
       inquiryType: '기업 강의 요청',
       message: '',
     });
+    setErrorMsg(null);
     setIsSubmitted(false);
   };
 
@@ -138,6 +172,13 @@ export default function Contact() {
                       className="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white text-sm placeholder-white/30 hover:border-white/20 focus:border-[#22C55E] focus:ring-1 focus:ring-[#22C55E]/30 transition-all outline-none resize-none"
                     />
                   </div>
+
+                  {errorMsg && (
+                    <div className="flex items-start gap-2.5 p-4 bg-[#EF4444]/15 border border-[#EF4444]/30 rounded-xl text-xs sm:text-sm text-[#EF4444]/90">
+                      <AlertTriangle className="h-4.5 w-4.5 shrink-0 mt-0.5" />
+                      <span>{errorMsg}</span>
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <button 
